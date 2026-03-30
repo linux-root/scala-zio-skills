@@ -10,7 +10,7 @@
 > ZIO coding rules, anti-patterns, and decision guides — as a Claude Code skill plugin.
 
 ## Install
-
+ Run in Claude Code
 ```bash
 /plugin marketplace add linux-root/scala-zio-skills
 ```

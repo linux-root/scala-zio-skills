@@ -13,7 +13,6 @@
 
 ```bash
 /plugin marketplace add linux-root/scala-zio-skills
-/plugin install zio-reference@scala-zio-skills
 ```
 
 Once installed, the skill auto-triggers whenever you're writing ZIO Scala code.

@@ -1,0 +1,19 @@
+{
+  "name": "zio-reference",
+  "description": "ZIO Scala coding patterns, rules, anti-patterns, and decision guides for writing correct ZIO code",
+  "version": "1.0.0",
+  "author": {
+    "name": "Watson Dinh",
+    "email": "dinh@w47s0n.com"
+  },
+  "homepage": "https://github.com/linux-root/scala-zio-skills",
+  "repository": "https://github.com/linux-root/scala-zio-skills",
+  "license": "MIT",
+  "keywords": [
+    "scala",
+    "zio",
+    "functional-programming",
+    "effects",
+    "concurrency"
+  ]
+}

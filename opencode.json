@@ -1,3 +1,5 @@
 {
-  "skills": ["./skills/zio-reference"]
+  "skills": {
+    "paths": ["./skills"]
+  }
 }

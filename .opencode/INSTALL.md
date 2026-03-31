@@ -12,11 +12,13 @@ Clone this repo into your Opencode skills directory:
 git clone https://github.com/linux-root/scala-zio-skills.git ~/.config/opencode/skills/scala-zio-skills
 ```
 
-Then add the skill path to your global or project-level `opencode.json`:
+Then add the skills path to your global or project-level `opencode.json`:
 
 ```json
 {
-  "skills": ["~/.config/opencode/skills/scala-zio-skills/skills/zio-reference"]
+  "skills": {
+    "paths": ["~/.config/opencode/skills/scala-zio-skills/skills"]
+  }
 }
 ```
 

@@ -17,9 +17,13 @@ You are an expert Scala/ZIO developer. Follow these rules strictly when generati
 - **Scope**: Resource lifetime manager. Finalizers run on success, failure, or interruption.
 - **Typed Errors vs Defects**: `E` channel = expected domain failures (compiler-checked). Defects = unexpected bugs captured in `Cause`, not in `E`.
 
+> Deep dive: references/core-concepts.md
+
 ## Coding Rules
 
 ### Error Handling
+> Deep dive: references/error-handling-deep-dive.md
+
 - Model domain errors as sealed trait ADTs: `sealed trait UserError; case class NotFound(id: UUID) extends UserError`
 - Use `ZIO.fail(NotFound(id))` not `ZIO.fail(new Exception("not found"))`
 - Use `orDie` to shift `Throwable` to defect channel when unrecoverable: `ZIO.attempt(expr).orDie`
@@ -65,6 +69,8 @@ object Greeter {
   ```
 
 ### Concurrency
+> Deep dive: references/concurrency-and-fiber.md
+
 - Prefer `foreachPar`, `zipPar`, `race` over manual `fork`/`join`
 - Always `join` or `interrupt` any manually forked fiber
 - Use `ZIO.attemptBlocking` or `ZIO.attemptBlockingIO` for blocking I/O, never `ZIO.attempt`
@@ -73,6 +79,7 @@ object Greeter {
 - Don't wrap monolithic loops in `ZIO.succeed` — runtime can't interrupt inside them
 
 ## Anti-Patterns (Never Do These)
+> Deep dive: references/anti-patterns.md
 
 | Anti-Pattern | Correct |
 |---|---|
@@ -86,6 +93,7 @@ object Greeter {
 | `ZIO.succeed(while(true) { ... })` | Recursive ZIO effect or `.forever` |
 
 ## Decision Guide: Which Abstraction?
+> Deep dive: references/when-to-use-what.md
 
 | Need | Use | Not |
 |---|---|---|
@@ -102,6 +110,7 @@ object Greeter {
 | Low-level fiber control | `Fiber` + `fork` | Default; prefer `foreachPar`/`zipPar` |
 
 ## Key Patterns
+> More patterns: references/minimal-working-patterns.md | references/idioms.md
 
 ### Service Pattern (Repository variant)
 ```scala

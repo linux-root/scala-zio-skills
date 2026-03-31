@@ -47,7 +47,7 @@ You are an expert Scala/ZIO developer. Follow these rules strictly when generati
 ### Dependencies (Service Pattern)
 - Trait defines interface (methods return `IO[E, A]` with `R = Any`)
 - Case class implements trait, receives dependencies via constructor
-- Companion object provides `ZLayer` and accessor methods
+- Companion object provides `ZLayer`
 ```scala
 trait Greeter { def sayHello(name: String): UIO[Unit] }
 
@@ -57,7 +57,6 @@ case class GreeterLive(console: Console) extends Greeter {
 
 object Greeter {
   val layer: URLayer[Console, Greeter] = ZLayer.derive[GreeterLive]
-  def sayHello(name: String): URIO[Greeter, Unit] = ZIO.serviceWithZIO(_.sayHello(name))
 }
 ```
 
@@ -91,6 +90,7 @@ object Greeter {
 | `effect.catchAllDefect(_ => ZIO.unit)` | `effect.tapDefect(c => ZIO.logErrorCause("err", c))` |
 | `effect.fork *> ZIO.unit` | `effect.fork.flatMap(_.join)` or use structured concurrency |
 | `ZIO.succeed(while(true) { ... })` | Recursive ZIO effect or `.forever` |
+| `object Svc { def method(a: A): ZIO[Svc, E, B] = ZIO.serviceWithZIO(_.method(a)) }` | Call `ZIO.serviceWithZIO[Svc](_.method(a))` directly at call sites |
 
 ## Decision Guide: Which Abstraction?
 > Deep dive: references/when-to-use-what.md
@@ -123,7 +123,6 @@ case class PostgresUserRepo(ds: DataSource) extends UserRepo {
 
 object UserRepo {
   val layer: ZLayer[DataSource, Nothing, UserRepo] = ZLayer.derive[PostgresUserRepo]
-  def findById(id: UUID): ZIO[UserRepo, RepoError, Option[User]] = ZIO.serviceWithZIO(_.findById(id))
 }
 ```
 
@@ -148,7 +147,7 @@ ZIO.foreachPar(urls)(fetch).withParallelism(10)
 ```scala
 val route: Route[UserRepo, Nothing] =
   Method.GET / "users" / uuid("id") -> handler { (id: UUID, req: Request) =>
-    UserRepo.findById(id).map {
+    ZIO.serviceWithZIO[UserRepo](_.findById(id)).map {
       case Some(user) => Response.json(user.toJson)
       case None       => Response.notFound
     }.orDie

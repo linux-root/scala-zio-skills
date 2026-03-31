@@ -37,3 +37,26 @@
 *   **Example**:
     *   *Anti-pattern*: `ZIO.attempt(Source.fromURL(url).mkString)`
     *   *Idiomatic*: `ZIO.attemptBlockingIO(Source.fromURL(url).mkString)`
+
+### **6. Accessor Methods in Service Companion Objects**
+*   **Description**: Adding methods to a service’s companion object that delegate to `ZIO.serviceWithZIO`, mirroring each method of the service trait.
+*   **Why it is wrong**: This pattern has been **deprecated by the ZIO library**. It creates redundant boilerplate that duplicates the entire service interface in the companion object, and obscures the actual dependency at the call site.
+*   **Correct alternative**: Call `ZIO.serviceWithZIO[Service](_.method(args))` directly at each call site. This is explicit, removes indirection, and requires no extra boilerplate in the companion object.
+*   **Example**:
+    *   *Anti-pattern*:
+        ```scala
+        object Greeter {
+          val layer: URLayer[Console, Greeter] = ZLayer.derive[GreeterLive]
+          def sayHello(name: String): URIO[Greeter, Unit] = ZIO.serviceWithZIO(_.sayHello(name))
+        }
+        // call site:
+        Greeter.sayHello("World")
+        ```
+    *   *Idiomatic*:
+        ```scala
+        object Greeter {
+          val layer: URLayer[Console, Greeter] = ZLayer.derive[GreeterLive]
+        }
+        // call site:
+        ZIO.serviceWithZIO[Greeter](_.sayHello("World"))
+        ```

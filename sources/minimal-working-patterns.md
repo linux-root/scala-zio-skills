@@ -13,7 +13,6 @@
     // 3. Layer for dependency injection
     object Greeter {
       val layer: URLayer[Console, Greeter] = ZLayer.derive[GreeterLive]
-      def sayHello(name: String): URIO[Greeter, Unit] = ZIO.serviceWithZIO(_.sayHello(name))
     }
     ```
 

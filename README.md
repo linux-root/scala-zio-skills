@@ -10,9 +10,18 @@
 > ZIO coding rules, anti-patterns, and decision guides — as a Claude Code skill plugin.
 
 ## Install
- Run in Claude Code
+
+### Claude Code
+Run in Claude Code:
 ```bash
 /plugin marketplace add linux-root/scala-zio-skills
+```
+
+### Opencode
+Open Opencode and send it this prompt:
+
+```
+Follow the instructions at https://raw.githubusercontent.com/linux-root/scala-zio-skills/refs/heads/main/.opencode/INSTALL.md and install the skill.
 ```
 
 Once installed, the skill auto-triggers whenever you're writing ZIO Scala code.

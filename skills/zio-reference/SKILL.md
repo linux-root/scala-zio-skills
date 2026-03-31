@@ -2,7 +2,7 @@
 name: zio-reference
 description: Use when writing ZIO Scala code — implementing services with ZLayer, handling typed errors vs defects, choosing concurrency primitives (Ref, Queue, Hub, STM, Semaphore), avoiding anti-patterns like blocking on ZIO threads, unsafe resource handling with ensuring, or overusing Task for business logic
 license: MIT
-compatibility: Designed for Scala/ZIO projects
+compatibility: opencode,claude-code
 ---
 
 # ZIO Coding Reference

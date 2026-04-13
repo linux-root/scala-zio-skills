@@ -12,9 +12,13 @@
 ## Install
 
 ### Claude Code
-Run in Claude Code:
-```bash
+**Step 1** — Add the marketplace source:
+```
 /plugin marketplace add linux-root/scala-zio-skills
+```
+**Step 2** — Install the plugin:
+```
+/plugin install zio-reference@scala-zio-skills
 ```
 
 ### Opencode

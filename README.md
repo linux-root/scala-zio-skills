@@ -28,6 +28,13 @@ Open Opencode and send it this prompt:
 Follow the instructions at https://raw.githubusercontent.com/linux-root/scala-zio-skills/refs/heads/main/.opencode/INSTALL.md and install the skill.
 ```
 
+### GitHub Copilot
+Open Copilot and send it this prompt:
+
+```
+Follow the instructions at https://raw.githubusercontent.com/linux-root/scala-zio-skills/refs/heads/main/.copilot/INSTALL.md and install the skill.
+```
+
 Once installed, the skill auto-triggers whenever you're writing ZIO Scala code.
 
 ## What's included

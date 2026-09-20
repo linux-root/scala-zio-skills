@@ -11,6 +11,14 @@
 
 ## Install
 
+### Any agent — one command
+```bash
+npx skills add linux-root/scala-zio-skills
+```
+Uses the [skills CLI](https://github.com/vercel-labs/skills); auto-detects your agent. Add `-g` to install globally instead of into the current project.
+
+Or install per agent:
+
 ### Claude Code
 **Step 1** — Add the marketplace source:
 ```

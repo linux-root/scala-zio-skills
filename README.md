@@ -45,6 +45,18 @@ Follow the instructions at https://raw.githubusercontent.com/linux-root/scala-zi
 
 Once installed, the skill auto-triggers whenever you're writing ZIO Scala code.
 
+## Quick test
+
+Open an existing ZIO project, load the skill with `/zio-reference`, then ask:
+
+```
+Given the ZIO knowledge from zio-reference, scan this project
+and find areas for easy-win improvements.
+```
+
+You should get concrete hits — `Task` used for business logic, `ensuring` where
+`acquireRelease` belongs, blocking calls wrapped in `ZIO.attempt`, and so on.
+
 ## What's included
 
 - **Coding rules** — error handling, composition, service pattern, resources, concurrency
